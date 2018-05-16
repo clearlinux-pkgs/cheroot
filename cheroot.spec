@@ -4,7 +4,7 @@
 #
 Name     : cheroot
 Version  : 6.2.4
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/e7/73/5cca1fe3f66777d267f9981b1b586511fc895b2ab0cabfaecf05ecc9ea03/cheroot-6.2.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/e7/73/5cca1fe3f66777d267f9981b1b586511fc895b2ab0cabfaecf05ecc9ea03/cheroot-6.2.4.tar.gz
 Summary  : Highly-optimized, pure-python HTTP server
