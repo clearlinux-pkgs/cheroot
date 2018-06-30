@@ -4,27 +4,26 @@
 #
 Name     : cheroot
 Version  : 6.2.4
-Release  : 5
+Release  : 6
 URL      : https://files.pythonhosted.org/packages/e7/73/5cca1fe3f66777d267f9981b1b586511fc895b2ab0cabfaecf05ecc9ea03/cheroot-6.2.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/e7/73/5cca1fe3f66777d267f9981b1b586511fc895b2ab0cabfaecf05ecc9ea03/cheroot-6.2.4.tar.gz
 Summary  : Highly-optimized, pure-python HTTP server
 Group    : Development/Tools
 License  : BSD-3-Clause
 Requires: cheroot-python3
+Requires: cheroot-license
 Requires: cheroot-python
 Requires: alabaster
 Requires: backports.functools_lru_cache
 Requires: docutils
 Requires: more-itertools
 Requires: six
-BuildRequires : backports.functools_lru_cache
 BuildRequires : more-itertools
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
-
 BuildRequires : python3-dev
 BuildRequires : setuptools
 BuildRequires : setuptools_scm
@@ -36,6 +35,14 @@ BuildRequires : virtualenv
 %description
 .. image:: https://img.shields.io/pypi/v/cheroot.svg
 :target: https://pypi.org/project/cheroot
+
+%package license
+Summary: license components for the cheroot package.
+Group: Default
+
+%description license
+license components for the cheroot package.
+
 
 %package python
 Summary: python components for the cheroot package.
@@ -63,11 +70,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1528566619
+export SOURCE_DATE_EPOCH=1530329380
 python3 setup.py build -b py3
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/cheroot
+cp LICENSE.md %{buildroot}/usr/share/doc/cheroot/LICENSE.md
 python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -75,6 +84,10 @@ echo ----[ mark ]----
 
 %files
 %defattr(-,root,root,-)
+
+%files license
+%defattr(-,root,root,-)
+/usr/share/doc/cheroot/LICENSE.md
 
 %files python
 %defattr(-,root,root,-)
