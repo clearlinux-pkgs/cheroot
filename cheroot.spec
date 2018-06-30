@@ -4,7 +4,7 @@
 #
 Name     : cheroot
 Version  : 6.2.4
-Release  : 6
+Release  : 7
 URL      : https://files.pythonhosted.org/packages/e7/73/5cca1fe3f66777d267f9981b1b586511fc895b2ab0cabfaecf05ecc9ea03/cheroot-6.2.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/e7/73/5cca1fe3f66777d267f9981b1b586511fc895b2ab0cabfaecf05ecc9ea03/cheroot-6.2.4.tar.gz
 Summary  : Highly-optimized, pure-python HTTP server
@@ -14,7 +14,6 @@ Requires: cheroot-python3
 Requires: cheroot-license
 Requires: cheroot-python
 Requires: alabaster
-Requires: backports.functools_lru_cache
 Requires: docutils
 Requires: more-itertools
 Requires: six
@@ -70,7 +69,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1530329380
+export SOURCE_DATE_EPOCH=1530329809
 python3 setup.py build -b py3
 
 %install
