@@ -4,21 +4,17 @@
 #
 Name     : cheroot
 Version  : 6.5.2
-Release  : 15
+Release  : 17
 URL      : https://files.pythonhosted.org/packages/c4/ab/b3800499ccec7f058fe080ae7f79207f9b498559edd1467d533a2126767c/cheroot-6.5.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/c4/ab/b3800499ccec7f058fe080ae7f79207f9b498559edd1467d533a2126767c/cheroot-6.5.2.tar.gz
 Summary  : Highly-optimized, pure-python HTTP server
 Group    : Development/Tools
 License  : BSD-3-Clause
-Requires: cheroot-bin
-Requires: cheroot-python3
-Requires: cheroot-license
-Requires: cheroot-python
-Requires: alabaster
-Requires: ddt
-Requires: docutils
+Requires: cheroot-bin = %{version}-%{release}
+Requires: cheroot-license = %{version}-%{release}
+Requires: cheroot-python = %{version}-%{release}
+Requires: cheroot-python3 = %{version}-%{release}
 Requires: more-itertools
-Requires: pytest-sugar
 Requires: six
 BuildRequires : buildreq-distutils3
 BuildRequires : more-itertools
@@ -39,7 +35,7 @@ Patch1: deps.patch
 %package bin
 Summary: bin components for the cheroot package.
 Group: Binaries
-Requires: cheroot-license
+Requires: cheroot-license = %{version}-%{release}
 
 %description bin
 bin components for the cheroot package.
@@ -56,7 +52,7 @@ license components for the cheroot package.
 %package python
 Summary: python components for the cheroot package.
 Group: Default
-Requires: cheroot-python3
+Requires: cheroot-python3 = %{version}-%{release}
 
 %description python
 python components for the cheroot package.
@@ -80,14 +76,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536085956
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1545875174
+export MAKEFLAGS=%{?_smp_mflags}
+python3 setup.py build
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/cheroot
-cp LICENSE.md %{buildroot}/usr/share/doc/cheroot/LICENSE.md
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/cheroot
+cp LICENSE.md %{buildroot}/usr/share/package-licenses/cheroot/LICENSE.md
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
@@ -100,8 +97,8 @@ echo ----[ mark ]----
 /usr/bin/cheroot
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/cheroot/LICENSE.md
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/cheroot/LICENSE.md
 
 %files python
 %defattr(-,root,root,-)
