@@ -4,7 +4,7 @@
 #
 Name     : cheroot
 Version  : 6.5.5
-Release  : 22
+Release  : 23
 URL      : https://files.pythonhosted.org/packages/0c/d9/4e13bc35e920ec63fc0f6b01f84537e9a7b9d6462a0419d903fea591a723/cheroot-6.5.5.tar.gz
 Source0  : https://files.pythonhosted.org/packages/0c/d9/4e13bc35e920ec63fc0f6b01f84537e9a7b9d6462a0419d903fea591a723/cheroot-6.5.5.tar.gz
 Summary  : Highly-optimized, pure-python HTTP server
@@ -26,6 +26,7 @@ BuildRequires : setuptools_scm-python
 BuildRequires : setuptools_scm_git_archive-python
 BuildRequires : tox
 BuildRequires : virtualenv
+Patch1: deps.patch
 
 %description
 .. image:: https://img.shields.io/pypi/v/cheroot.svg
@@ -68,13 +69,14 @@ python3 components for the cheroot package.
 
 %prep
 %setup -q -n cheroot-6.5.5
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1556984908
+export SOURCE_DATE_EPOCH=1556987135
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
