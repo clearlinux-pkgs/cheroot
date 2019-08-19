@@ -1,5 +1,5 @@
 PKG_NAME := cheroot
-URL = https://files.pythonhosted.org/packages/0c/d9/4e13bc35e920ec63fc0f6b01f84537e9a7b9d6462a0419d903fea591a723/cheroot-6.5.5.tar.gz
+URL = https://files.pythonhosted.org/packages/74/02/8c9672ff872bb3d6a226990b73580dcb686b316941283972fef6c8d149ee/cheroot-6.5.6.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
